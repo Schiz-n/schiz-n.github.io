@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reverse GET Test</title>
+</head>
+<body>
+    <h2>Query test</h2>
+    <div id="output"></div>
+
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function reverseString(str) {
+            return str.split("").reverse().join("");
+        }
+
+        const value = getQueryParam("get");
+        const output = document.getElementById("output");
+
+        if (value) {
+            output.innerText = "Got: " + value;
+
+            setTimeout(() => {
+                const reversed = reverseString(value);
+                const newUrl = window.location.pathname + "?get=" + encodeURIComponent(reversed);
+                window.location.href = newUrl;
+            }, 3000); // 3 seconds
+        } else {
+            output.innerText = "No ?get= parameter provided.";
+        }
+    </script>
+</body>
+</html>
