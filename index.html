@@ -7,27 +7,14 @@
 <body>
     <h2>Query test</h2>
     <div id="output"></div>
+<a id="redir" href="?get=test">go</a>
 
 <script>
-    function getQueryParam(name) {
-        return new URLSearchParams(window.location.search).get(name);
-    }
-
-    function reverseString(str) {
-        return str.split("").reverse().join("");
-    }
-
-    const value = getQueryParam("get");
-
-    if (value) {
-        const reversed = reverseString(value);
-
-        const meta = document.createElement("meta");
-        meta.httpEquiv = "refresh";
-        meta.content = "3; url=?get=" + encodeURIComponent(reversed);
-
-        document.head.appendChild(meta);
-    }
+setTimeout(() => {
+    document.getElementById("redir").click();
+}, 3000);
 </script>
+    
+
 </body>
 </html>
