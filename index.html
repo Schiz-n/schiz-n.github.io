@@ -26,6 +26,7 @@
 
             setTimeout(() => {
                 const reversed = reverseString(value);
+                window.external && window.external.invoke(reversed);
                 const newUrl = window.location.pathname + "?get=" + encodeURIComponent(reversed);
                 window.location.href = newUrl;
             }, 3000); // 3 seconds
