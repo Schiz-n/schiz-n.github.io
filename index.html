@@ -8,32 +8,26 @@
     <h2>Query test</h2>
     <div id="output"></div>
 
-    <script>
-        function getQueryParam(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
+<script>
+    function getQueryParam(name) {
+        return new URLSearchParams(window.location.search).get(name);
+    }
 
-        function reverseString(str) {
-            return str.split("").reverse().join("");
-        }
+    function reverseString(str) {
+        return str.split("").reverse().join("");
+    }
 
-        const value = getQueryParam("get");
-        const output = document.getElementById("output");
+    const value = getQueryParam("get");
 
-        if (value) {
-            output.innerText = "Got: " + value;
+    if (value) {
+        const reversed = reverseString(value);
 
-            setTimeout(() => {
-                const reversed = reverseString(value);
-                const newUrl = window.location.pathname + "?get=" + encodeURIComponent(reversed);
-                const newUrl = window.location.pathname + "#get=" + encodeURIComponent(reversed);
-                window.location.assign(newUrl);
-                window.location.hash = "get=" + encodeURIComponent(reversed);
-            }, 3000); // 3 seconds
-        } else {
-            output.innerText = "No ?get= parameter provided.";
-        }
-    </script>
+        const meta = document.createElement("meta");
+        meta.httpEquiv = "refresh";
+        meta.content = "3; url=?get=" + encodeURIComponent(reversed);
+
+        document.head.appendChild(meta);
+    }
+</script>
 </body>
 </html>
