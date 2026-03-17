@@ -27,7 +27,9 @@
             setTimeout(() => {
                 const reversed = reverseString(value);
                 const newUrl = window.location.pathname + "?get=" + encodeURIComponent(reversed);
-                window.location.replace(newUrl);
+                const newUrl = window.location.pathname + "#get=" + encodeURIComponent(reversed);
+                window.location.assign(newUrl);
+                window.location.hash = "get=" + encodeURIComponent(reversed);
             }, 3000); // 3 seconds
         } else {
             output.innerText = "No ?get= parameter provided.";
