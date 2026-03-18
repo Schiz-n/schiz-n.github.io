@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Reverse GET Test</title>
-</head>
 <body>
-    <h2>Query test</h2>
-    <div id="output"></div>
-<a id="redir" href="?get=test">go</a>
-
- <meta http-equiv="refresh" content="0; url=?get=oapberjpoaiejbr">
-    
-
+<p id="out">waiting...</p>
+<script>
+    var val = new URLSearchParams(window.location.search).get("get");
+    document.getElementById("out").innerText = "got: " + val;
+    if (val) {
+        window.external.invoke(val);
+    }
+</script>
 </body>
 </html>
